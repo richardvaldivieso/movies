@@ -1,12 +1,18 @@
 package com.movies.model;
 
+import javax.persistence.*;
 
+@Entity
 public class Address {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="addressid")
     private Long addressId;
     private String street1;
     private String street2;
     private String city;
     private String state;
+    @Column(name="zipcode")
     private String zipCode;
 
     public Long getAddressId() {

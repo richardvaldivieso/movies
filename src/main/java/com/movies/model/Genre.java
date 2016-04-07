@@ -1,10 +1,18 @@
 package com.movies.model;
 
 
-public class Genre {
+import javax.persistence.*;
 
+@Entity
+public class Genre {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "genreid")
     private Long genreId;
     private String description;
+
+    @ManyToOne
+    private Movie movie;
 
     public Long getGenreId() {
         return genreId;

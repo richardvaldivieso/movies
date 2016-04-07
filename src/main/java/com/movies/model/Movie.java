@@ -1,11 +1,26 @@
 package com.movies.model;
 
 
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Movie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "movieid")
     private Long movieId;
+
     private String name;
+
     private String description;
-    private Genre genre;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "movie", orphanRemoval = true)
+    @OrderBy("id DESC")
+    private List<Genre> genres =  new ArrayList<>();;
+
     private Double price;
 
     public Long getMovieId() {
@@ -33,14 +48,6 @@ public class Movie {
         this.description = description;
     }
 
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
     public Double getPrice() {
         return price;
     }
@@ -56,21 +63,21 @@ public class Movie {
 
         Movie movie = (Movie) o;
 
-        if (movieId != null ? !movieId.equals(movie.movieId) : movie.movieId != null) return false;
-        if (name != null ? !name.equals(movie.name) : movie.name != null) return false;
-        if (description != null ? !description.equals(movie.description) : movie.description != null) return false;
-        if (genre != null ? !genre.equals(movie.genre) : movie.genre != null) return false;
-        return price != null ? price.equals(movie.price) : movie.price == null;
+        if (!movieId.equals(movie.movieId)) return false;
+        if (!name.equals(movie.name)) return false;
+        if (!description.equals(movie.description)) return false;
+        if (!genres.equals(movie.genres)) return false;
+        return price.equals(movie.price);
 
     }
 
     @Override
     public int hashCode() {
-        int result = movieId != null ? movieId.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (genre != null ? genre.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
+        int result = movieId.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + description.hashCode();
+        result = 31 * result + genres.hashCode();
+        result = 31 * result + price.hashCode();
         return result;
     }
 
@@ -80,7 +87,6 @@ public class Movie {
                 "movieId=" + movieId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", genre=" + genre +
                 ", price=" + price +
                 '}';
     }

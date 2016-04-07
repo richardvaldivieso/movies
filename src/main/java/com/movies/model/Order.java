@@ -1,14 +1,27 @@
 package com.movies.model;
 
-
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+@Entity
 public class Order {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="orderid")
     private Long orderId;
+
+    @ManyToOne
+    @JoinColumn(name="customerid")
     private Customer customer;
-    private Long orderStatusId;
-    private OrderStatus orderStatus;
+
+    @Column(name="orderdate")
     private Date orderDate;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order", orphanRemoval = true)
+    @OrderBy("id DESC")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     public Long getOrderId() {
         return orderId;
@@ -16,22 +29,6 @@ public class Order {
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     public Date getOrderDate() {
@@ -42,12 +39,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public Long getOrderStatusId() {
-        return orderStatusId;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderStatusId(Long orderStatusId) {
-        this.orderStatusId = orderStatusId;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     @Override
@@ -57,33 +54,19 @@ public class Order {
 
         Order order = (Order) o;
 
-        if (orderId != null ? !orderId.equals(order.orderId) : order.orderId != null) return false;
-        if (customer != null ? !customer.equals(order.customer) : order.customer != null) return false;
-        if (orderStatusId != null ? !orderStatusId.equals(order.orderStatusId) : order.orderStatusId != null)
-            return false;
-        if (orderStatus != null ? !orderStatus.equals(order.orderStatus) : order.orderStatus != null) return false;
-        return orderDate != null ? orderDate.equals(order.orderDate) : order.orderDate == null;
+        if (!orderId.equals(order.orderId)) return false;
+        if (!customer.equals(order.customer)) return false;
+        if (!orderDate.equals(order.orderDate)) return false;
+        return orderItems.equals(order.orderItems);
 
     }
 
     @Override
     public int hashCode() {
-        int result = orderId != null ? orderId.hashCode() : 0;
-        result = 31 * result + (customer != null ? customer.hashCode() : 0);
-        result = 31 * result + (orderStatusId != null ? orderStatusId.hashCode() : 0);
-        result = 31 * result + (orderStatus != null ? orderStatus.hashCode() : 0);
-        result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
+        int result = orderId.hashCode();
+        result = 31 * result + customer.hashCode();
+        result = 31 * result + orderDate.hashCode();
+        result = 31 * result + orderItems.hashCode();
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", customer=" + customer +
-                ", orderStatusId=" + orderStatusId +
-                ", orderStatus=" + orderStatus +
-                ", orderDate=" + orderDate +
-                '}';
     }
 }
