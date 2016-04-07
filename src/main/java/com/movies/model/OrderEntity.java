@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Order {
+public class OrderEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="orderid")
@@ -14,14 +14,14 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name="customerid")
-    private Customer customer;
+    private CustomerEntity customer;
 
     @Column(name="orderdate")
     private Date orderDate;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order", orphanRemoval = true)
     @OrderBy("id DESC")
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private List<OrderItemEntity> orderItems = new ArrayList<>();
 
     public Long getOrderId() {
         return orderId;
@@ -39,11 +39,11 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public List<OrderItem> getOrderItems() {
+    public List<OrderItemEntity> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
+    public void setOrderItems(List<OrderItemEntity> orderItems) {
         this.orderItems = orderItems;
     }
 
@@ -52,7 +52,7 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Order order = (Order) o;
+        OrderEntity order = (OrderEntity) o;
 
         if (!orderId.equals(order.orderId)) return false;
         if (!customer.equals(order.customer)) return false;

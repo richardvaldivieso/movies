@@ -3,7 +3,7 @@ package com.movies.model;
 import javax.persistence.*;
 
 @Entity
-public class Address {
+public class AddressEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="addressid")
@@ -68,7 +68,7 @@ public class Address {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Address address = (Address) o;
+        AddressEntity address = (AddressEntity) o;
 
         if (addressId != null ? !addressId.equals(address.addressId) : address.addressId != null) return false;
         if (street1 != null ? !street1.equals(address.street1) : address.street1 != null) return false;
@@ -93,7 +93,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
+        return "AddressEntity{" +
                 "addressId=" + addressId +
                 ", street1='" + street1 + '\'' +
                 ", street2='" + street2 + '\'' +

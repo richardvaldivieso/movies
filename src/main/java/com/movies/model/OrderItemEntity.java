@@ -4,7 +4,7 @@ package com.movies.model;
 import javax.persistence.*;
 
 @Entity
-public class OrderItem {
+public class OrderItemEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "orderitemid")
@@ -12,17 +12,17 @@ public class OrderItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="orderid")
-    private Order order;
+    private OrderEntity order;
 
     @OneToOne
     @JoinColumn(name="movieid")
-    private Movie movie;
+    private MovieEntity movie;
 
-    public Movie getMovie() {
+    public MovieEntity getMovie() {
         return movie;
     }
 
-    public void setMovie(Movie movie) {
+    public void setMovie(MovieEntity movie) {
         this.movie = movie;
     }
 
@@ -45,11 +45,11 @@ public class OrderItem {
         this.currentPrice = currentPrice;
     }
 
-    public Order getOrder() {
+    public OrderEntity getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(OrderEntity order) {
         this.order = order;
     }
 
@@ -58,7 +58,7 @@ public class OrderItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OrderItem orderItem = (OrderItem) o;
+        OrderItemEntity orderItem = (OrderItemEntity) o;
 
         if (!orderItemId.equals(orderItem.orderItemId)) return false;
         if (!order.equals(orderItem.order)) return false;
