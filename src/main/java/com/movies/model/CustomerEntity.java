@@ -3,7 +3,7 @@ package com.movies.model;
 import javax.persistence.*;
 
 @Entity
-public class Customer {
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customerid")
@@ -17,13 +17,13 @@ public class Customer {
 
     @OneToOne
     @JoinColumn(name="addressid")
-    private Address address;
+    private AddressEntity address;
 
-    public Customer() {
+    public CustomerEntity() {
 
     }
 
-    public Customer(String firstName, String lastName) {
+    public CustomerEntity(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -58,7 +58,7 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Customer customer = (Customer) o;
+        CustomerEntity customer = (CustomerEntity) o;
 
         if (!customerId.equals(customer.customerId)) return false;
         if (!firstName.equals(customer.firstName)) return false;
@@ -76,7 +76,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "CustomerEntity{" +
                 "customerId=" + customerId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
