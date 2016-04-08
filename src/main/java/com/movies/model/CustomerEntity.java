@@ -15,10 +15,6 @@ public class CustomerEntity {
     @Column(name = "lastname")
     private String lastName;
 
-    @OneToOne
-    @JoinColumn(name="addressid")
-    private AddressEntity address;
-
     public CustomerEntity() {
 
     }
