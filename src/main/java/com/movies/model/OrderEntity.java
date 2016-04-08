@@ -19,6 +19,12 @@ public class OrderEntity {
     @Column(name="orderdate")
     private Date orderDate;
 
+    @Column(name="orderstatus")
+    private String orderStatus;
+
+    @Column(name="discount")
+    private Double discount;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order", orphanRemoval = true)
     @OrderBy("id DESC")
     private List<OrderItemEntity> orderItems = new ArrayList<>();
@@ -47,26 +53,54 @@ public class OrderEntity {
         this.orderItems = orderItems;
     }
 
+    public CustomerEntity getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OrderEntity order = (OrderEntity) o;
+        OrderEntity that = (OrderEntity) o;
 
-        if (!orderId.equals(order.orderId)) return false;
-        if (!customer.equals(order.customer)) return false;
-        if (!orderDate.equals(order.orderDate)) return false;
-        return orderItems.equals(order.orderItems);
+        if (orderId != null ? !orderId.equals(that.orderId) : that.orderId != null) return false;
+        if (customer != null ? !customer.equals(that.customer) : that.customer != null) return false;
+        if (orderDate != null ? !orderDate.equals(that.orderDate) : that.orderDate != null) return false;
+        if (orderStatus != null ? !orderStatus.equals(that.orderStatus) : that.orderStatus != null) return false;
+        if (discount != null ? !discount.equals(that.discount) : that.discount != null) return false;
+        return orderItems != null ? orderItems.equals(that.orderItems) : that.orderItems == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = orderId.hashCode();
-        result = 31 * result + customer.hashCode();
-        result = 31 * result + orderDate.hashCode();
-        result = 31 * result + orderItems.hashCode();
+        int result = orderId != null ? orderId.hashCode() : 0;
+        result = 31 * result + (customer != null ? customer.hashCode() : 0);
+        result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
+        result = 31 * result + (orderStatus != null ? orderStatus.hashCode() : 0);
+        result = 31 * result + (discount != null ? discount.hashCode() : 0);
+        result = 31 * result + (orderItems != null ? orderItems.hashCode() : 0);
         return result;
     }
 }
