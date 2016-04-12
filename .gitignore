@@ -2,3 +2,4 @@ node_modules
 .idea
 Movies.iml
 h2
+build
