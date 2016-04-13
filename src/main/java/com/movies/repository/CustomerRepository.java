@@ -1,4 +1,4 @@
-package com.movies;
+package com.movies.repository;
 
 
 import com.movies.model.CustomerEntity;
