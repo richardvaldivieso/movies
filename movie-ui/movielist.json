@@ -1,0 +1,28 @@
+{
+  "movies": [
+    {
+      "movieId": 1,
+      "movieName": "Captain America Civil War"
+    },
+    {
+      "movieId": 2,
+      "movieName": "IronMan"
+    },
+    {
+      "movieId": 3,
+      "movieName": "Thor"
+    },
+    {
+      "movieId": 4,
+      "movieName": "The Avengers"
+    },
+    {
+      "movieId": 5,
+      "movieName": "Batman vs.Superman"
+    },
+    {
+      "movieId": 6,
+      "movieName": "The World Of Willy Wonka"
+    }
+  ]
+}
