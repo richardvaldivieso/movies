@@ -18,17 +18,18 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
     "classnames": "^2.2.3",
     "express-http-proxy": "^0.6.0",
     "history": "^1.17.0",
     "lodash": "4.0.1",
     "numeral": "^1.5.3",
+    "react": "^0.14.7",
     "react-addons-update": "^0.14.6",
+    "react-dom": "^0.14.7",
     "react-modal": "^0.6.1",
     "react-radio-group": "^2.2.0",
     "react-redux": "^4.0.6",
+    "react-refetch": "^1.0.0-beta.4",
     "react-router": "^1.0.3",
     "react-scroll": "^0.35.0",
     "react-typeahead-component": "^0.9.0",
@@ -36,6 +37,7 @@
     "redux-form": "^4.1.5",
     "redux-logger": "^2.3.2",
     "redux-router": "^1.0.0-beta7",
-    "redux-thunk": "^1.0.3"
+    "redux-thunk": "^1.0.3",
+    "whatwg-fetch": "^1.0.0"
   }
 }

@@ -1,7 +1,9 @@
 import React from 'react';
-import HelloWorld from './helloworld';
+import ReactDOM from 'react-dom'
 
-React.render(
-    <HelloWorld phrase="Movies app"/>,
+import MovieSearch from './MovieSearch.jsx';
+
+ReactDOM.render(
+    <MovieSearch />,
     document.getElementById("app")
 );
