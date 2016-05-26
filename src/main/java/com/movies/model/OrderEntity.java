@@ -7,6 +7,10 @@ import java.util.List;
 
 @Entity
 public class OrderEntity {
+    public OrderEntity(String orderStatus, Double discount){
+        this.orderStatus = orderStatus;
+        this.discount = discount;
+    }
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="orderid")
